@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TipCalculatorApp"
+             x:Class="TipCalculatorApp.MainPage">
+
+
+    <StackLayout>
+        <Label>Restaurant</Label>
+        <Entry Text="{ Binding InputRestaurant}"
+                   Keyboard="Text"></Entry>
+
+        <Label>Betaalde Bedrag</Label>
+        <Entry Text="{ Binding GivenPrice}"
+                   Keyboard="Numeric"></Entry>
+
+        <Label>Procent</Label>
+        <Entry Text="{ Binding GivenTipPercent}"
+                   Keyboard="Numeric"></Entry>
+
+        <Label Text="{ Binding CalculatedTip.TipAmount }"
+                   HorizontalTextAlignment="Center"></Label>
+
+        <Button Text="Bereken" Command="{Binding CalculateTip}"/>
+
+        <Button Text="Opslaan" Command="{Binding SaveTip}"/>
+
+        <Label>Saved Tips:</Label>
+
+        <ListView x:Name="lv_tips" ItemsSource="{Binding SavedTips}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell IsEnabled="false">
+                        <Grid>
+                            <Label Grid.Column="0" Text="{Binding Restaurant}" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{Binding TipAmount}" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                            <Label Grid.Column="2" Text="{Binding TipDate}" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                            <Label Grid.Column="3" Text="{Binding TipTime}" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
